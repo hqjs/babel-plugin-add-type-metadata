@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/hqjs/babel-plugin-add-type-metadata/issues"
   },
-  "homepage": "https://github.com/hqjs/babel-plugin-add-type-metadata#readme"
+  "homepage": "https://hqjs.org",
+  "publishConfig": {
+    "access": "public"
+  }
 }
