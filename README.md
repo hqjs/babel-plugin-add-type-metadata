@@ -1,2 +1,8 @@
 # babel-plugin-add-type-metadata
-https://hqjs.org Add types metadata
+Add types metadata
+
+# Installation
+```sh
+npm install hqjs@babel-plugin-add-type-metadata
+```
+
