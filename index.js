@@ -1,4 +1,4 @@
-module.exports = function({ types: t }) {
+module.exports = function ({ types: t }) {
   return {
     visitor: {
       ClassDeclaration(nodePath) {
@@ -11,28 +11,26 @@ module.exports = function({ types: t }) {
               const types = node.params.map(n => t.isTSParameterProperty(n) ?
                 n.parameter.typeAnnotation.typeAnnotation.typeName.name :
                 null);
-              const typeMetadata = t.assignmentExpression(
-                '=',
-                t.memberExpression(
-                  t.identifier(cls.node.id.name),
-                  t.identifier('ctorParameters')
-                ),
-                t.functionExpression(
-                  null,
-                  [],
-                  t.blockStatement([
-                    t.returnStatement(t.arrayExpression(types.map(type => type ?
-                      t.objectExpression([
-                        t.objectProperty(
-                          t.stringLiteral('type'),
-                          t.identifier(type)
-                        ),
-                      ]) :
-                      t.nullLiteral()))),
-                  ])
-                )
+
+              const ctorParameters = t.classMethod(
+                'method',
+                t.stringLiteral('ctorParameters'),
+                [],
+                t.blockStatement([
+                  t.returnStatement(t.arrayExpression(types.map(type => type ?
+                    t.objectExpression([
+                      t.objectProperty(
+                        t.stringLiteral('type'),
+                        t.identifier(type)
+                      ),
+                    ]) :
+                    t.nullLiteral()))),
+                ]),
+                false,
+                true
               );
-              nodePath.insertAfter(t.expressionStatement(typeMetadata));
+
+              nodePath.get('body').unshiftContainer('body', ctorParameters);
             }
           },
         });
