@@ -8,7 +8,7 @@ module.exports = function ({ types: t }) {
             if (node.key.name === 'constructor') {
               const cls = methodPath.findParent(p => t.isClassDeclaration(p) || t.isClassExpression(p));
               if (!node.params.some(n => t.isTSParameterProperty(n))) return;
-              const types = node.params.map(n => t.isTSParameterProperty(n) ?
+              const types = node.params.map(n => t.isTSParameterProperty(n) && t.isTSTypeReference(n.parameter.typeAnnotation.typeAnnotation) ?
                 n.parameter.typeAnnotation.typeAnnotation.typeName.name :
                 null);
 
