@@ -1,6 +1,6 @@
 {
   "name": "@hqjs/babel-plugin-add-type-metadata",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Add plugin metadata",
   "main": "index.js",
   "scripts": {
