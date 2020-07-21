@@ -7,7 +7,7 @@ npm install hqjs@babel-plugin-add-type-metadata
 ```
 
 # Transformation
-Plugin adds type metadata to classes to help Angular e.g.
+Plugin adds type metadata from constructor to classes to help Angular e.g.
 ```ts
 ...
 import { MessageService } from './message.service';
